@@ -15,7 +15,8 @@ class AddressBookMain {
 
             System.out.println("1.Add Contact");
             System.out.println("2.Edit Contact");
-            System.out.println("3.Exit");
+            System.out.println("3.Delete");
+            System.out.println("4.Exit");
             System.out.println("Enter Choice: ");
 
             int option = sc.nextInt();
@@ -23,30 +24,42 @@ class AddressBookMain {
             switch (option)
             {
                 case 1:
-                    addressBook.addContactDetails();
+                    System.out.println("Enter the number of Contacts to be added");
+                    int noOfContacts = sc.nextInt();
+                    for(int i = 0; i < noOfContacts; i++) {
+                        addressBook.addContactDetails();
+                    }
                     break;
 
                 case 2:
                     System.out.println("Enter the Person First name to edit details: ");
-                    String person_name = sc.next();
+                    String personName = sc.next();
 
-                    boolean b = addressBook.editContactDetails(person_name);
-                    if (b == true) {
-                        System.out.println("Details Updated");
+                    boolean listEdited = addressBook.editContactDetails(personName);
+                    if (listEdited) {
+                        System.out.println("List Edited Successfully");
                     } else {
-                        System.out.println("Contact Not Found");
+                        System.out.println("List Cannot be Edited");
                     }
                     break;
 
                 case 3:
+                    System.out.println("Enter the Contact to be deleted:");
+                    String firstName = sc.next();
+                    boolean listDeleted = addressBook.deleteContact(firstName);
+                    if (listDeleted) {
+                        System.out.println("Deleted Contact from the List");
+                    } else {
+                        System.out.println("List Cannot be Deleted");
+                    }
+                    break;
+
+                case 4:
                     flag =false;
                     break;
 
-                default:
-                    throw new IllegalStateException("Unexpected value: " + option);
             }
         }
 
     }
 }
-
