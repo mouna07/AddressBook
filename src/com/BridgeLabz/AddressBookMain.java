@@ -179,6 +179,42 @@ class AddressBookMain {
         }
     }
 
+    public void CountByState(String state) {
+        int count = 0;
+        for(Map.Entry<String, AddressBook> entry: addressBookListMap.entrySet()){
+            for(int i=0;i<(entry.getValue()).contactList.size();i++)
+            {
+                ContactDetails contact= entry.getValue().contactList.get(i);
+
+                if(state.equals(contact.getState()))
+                {
+                    count++;
+                }
+
+            }
+        }
+        System.out.println("Total Person Count in state "+state+": "+count);
+    }
+    public void CountByCity(String city) {
+        int countPersonInCity=0;
+        for(Map.Entry<String, AddressBook> entry: addressBookListMap.entrySet())
+        {
+            for(int i=0;i<(entry.getValue()).contactList.size();i++)
+            {
+                ContactDetails d= (ContactDetails) entry.getValue().contactList.get(i);
+
+                if(city.equals(d.getCity()))
+                {
+                    countPersonInCity++;
+                }
+
+            }
+        }
+        System.out.println("Total number of people in this city "+city+": "+countPersonInCity);
+    }
+
+
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book Management System using Java Stream");
         AddressBookMain addressBookMain = new AddressBookMain();
@@ -192,11 +228,13 @@ class AddressBookMain {
             System.out.println("6.View Contact by city Using City and Person HashMap");
             System.out.println("7.Count Contact By State");
             System.out.println("8.Count Contact By City");
+
             System.out.println("9.Sort and Print in Alphabetical Order");
             System.out.println("10.Sort Contact By City");
             System.out.println("11.Sort Contact By State");
             System.out.println("12.Sort Contact By Zip Code");
             System.out.println("13.Exit");
+
 
             System.out.println("Enter choice: ");
             int option = sc.nextInt();
@@ -257,6 +295,7 @@ class AddressBookMain {
                     break;
 
                 case 9:
+
                     System.out.println("Sort");
                     addressBookMain.sortContactByName();
 
@@ -273,6 +312,7 @@ class AddressBookMain {
                     break;
 
                 case 13:
+
                     flag = false;
                     break;
 
@@ -280,5 +320,6 @@ class AddressBookMain {
         }
 
     }
+
 
 }
