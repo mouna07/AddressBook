@@ -1,10 +1,11 @@
 package com.BridgeLabz;
 
 import java.util.*;
+
 class AddressBookMain {
     public static Scanner sc = new Scanner(System.in);
     private static AddressBook addressBook = new AddressBook();
-    public Map<String,AddressBook> addressBookListMap = new HashMap<>();
+    public static Map<String,AddressBook> addressBookListMap = new HashMap<>();
 
     public void addAddressBook(String addressBookName){
         AddressBookMain addBookMain = new AddressBookMain();
@@ -58,10 +59,9 @@ class AddressBookMain {
                     break;
 
             }
-            addressBookListMap.put(addressBookName, addressBook);
-            System.out.println("Address Book Added Successfully");
         }
-
+        addressBookListMap.put(addressBookName, addressBook);
+        System.out.println("Address Book Added Successfully");
     }
 
 
@@ -70,24 +70,26 @@ class AddressBookMain {
         System.out.println("Welcome to the Address Book Management System using Java Stream");
         AddressBookMain addressBookMain = new AddressBookMain();
         boolean flag =true;
-        while(flag)
-        {
+        while(flag) {
             System.out.println("1.Add New Address Book");
             System.out.println("2.Find Duplicate Entry in Address Book");
-            System.out.println("3.Exit");
+            System.out.println("3.Search Contact from a city");
+            System.out.println("4.Search Contact from a State");
+            System.out.println("5.Exit");
             System.out.println("Enter choice: ");
             int option = sc.nextInt();
-            switch (option){
-                case 1:
+            switch (option) {
+                case 1: {
                     System.out.println("Enter the Name of Address Book: ");
                     String addressBookName = sc.next();
-                    if(addressBookMain.addressBookListMap.containsKey(addressBookName)){
+                    if (addressBookListMap.containsKey(addressBookName)) {
                         System.out.println("The Address book Already Exists");
                         break;
-                    }else {
+                    } else {
                         addressBookMain.addAddressBook(addressBookName);
                         break;
                     }
+                }
 
                 case 2:
                     for (Map.Entry<String, AddressBook> entry : addressBookMain.addressBookListMap.entrySet()) {
@@ -97,13 +99,41 @@ class AddressBookMain {
                     }
 
                 case 3:
-                    flag = false;
+                    System.out.println("Enter Name of City: ");
+                    String CityName = sc.next();
+                    addressBookMain.searchPersonByCity(CityName);
                     break;
 
+                case 4:{
+                    System.out.println("Enter Name of State: ");
+                    String StateName = sc.next();
+                    addressBookMain.searchPersonByState(StateName);
+                    break;
+                }
+
+                case 5:
+                    flag = false;
+                    break;
             }
         }
 
+    }
 
+
+    private void searchPersonByState(String stateName) {
+        for(Map.Entry<String,AddressBook> entry: addressBookListMap.entrySet()){
+            AddressBook value = entry.getValue();
+            System.out.println("The Address Book: "+entry.getKey());
+            value.getPersonNameByState(stateName);
+        }
+    }
+
+    private void searchPersonByCity(String cityName) {
+        for(Map.Entry<String,AddressBook> entry: addressBookListMap.entrySet()){
+            AddressBook value = entry.getValue();
+            System.out.println("The Address Book: "+entry.getKey());
+            value.getPersonNameByCity(cityName);
+        }
     }
 }
 
