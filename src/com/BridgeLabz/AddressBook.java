@@ -125,7 +125,6 @@ public class AddressBook {
         return flag == 1;
     }
 
-
     public boolean deleteContact(String name) {
         int flag = 0;
         for (ContactDetails contact : contactList) {
