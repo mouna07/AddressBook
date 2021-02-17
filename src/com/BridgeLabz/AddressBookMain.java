@@ -137,6 +137,7 @@ class AddressBookMain {
         System.out.println("Total number of people in this city "+city+": "+countPersonInCity);
     }
 
+
     private void sortContactByName() {
         for (Map.Entry<String,AddressBook>entry:addressBookListMap.entrySet()){
             AddressBook value = entry.getValue();
@@ -148,6 +149,7 @@ class AddressBookMain {
             }
         }
     }
+
 
 
     public static void main(String[] args) {
@@ -165,6 +167,8 @@ class AddressBookMain {
             System.out.println("8.Count Contact By City");
             System.out.println("9.Sort and Print in Alphabetically Order");
             System.out.println("10.Exit");
+
+
 
             System.out.println("Enter choice: ");
             int option = sc.nextInt();
@@ -225,10 +229,12 @@ class AddressBookMain {
                     break;
 
                 case 9:
+
                     System.out.println("Sort Contact");
                     addressBookMain.sortContactByName();
 
                 case 10:
+
                     flag = false;
                     break;
             }
@@ -236,4 +242,6 @@ class AddressBookMain {
 
     }
 
+
 }
+
