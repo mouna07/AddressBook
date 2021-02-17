@@ -46,7 +46,6 @@ public class AddressBook {
         personByCity.get(city).add(contactDetails);
 
         return contactList;
-
     }
 
     public boolean editContactDetails(String Name) {
@@ -162,5 +161,4 @@ public class AddressBook {
             System.out.println("Last Name: "+contact.getLastName());
         }
     }
-
 }
