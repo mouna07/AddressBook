@@ -118,7 +118,22 @@ public class AddressBook {
         for (ContactDetails contact : filterSet) {
             System.out.println("The Duplicate Contact is: " + contact.getFirstName() + " " + contact.getLastName());
         }
+    }
 
+    public void getPersonNameByState(String State) {
+        List<ContactDetails> list  = contactList.stream().filter(p ->p.getCity().equals(State)).collect(Collectors.toList());
+        for(ContactDetails contact: list){
+            System.out.println("First Name: "+contact.getFirstName());
+            System.out.println("Last Name: "+contact.getLastName());
+        }
 
+    }
+
+    public void getPersonNameByCity(String cityName) {
+        List<ContactDetails> list  = contactList.stream().filter(p ->p.getCity().equals(cityName)).collect(Collectors.toList());
+        for(ContactDetails contact: list){
+            System.out.println("First Name: "+contact.getFirstName());
+            System.out.println("Last Name: "+contact.getLastName());
+        }
     }
 }
