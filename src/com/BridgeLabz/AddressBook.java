@@ -1,5 +1,9 @@
 package com.BridgeLabz;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,6 +18,30 @@ public class AddressBook {
         personByState = new HashMap<String, ArrayList<ContactDetails>>();
         contactList = new ArrayList<>();
     }
+
+    public void writeData(String addressBookName) {
+        StringBuffer empBuffer = new StringBuffer();
+        contactList.forEach(employee -> {
+            String employeeDataString = employee.toString().concat("\n");
+            empBuffer.append(employeeDataString);
+        });
+        try {
+            Files.write(Paths.get("addressBook-file.txt"), empBuffer.toString().getBytes());
+
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void readData(String readAddressBookName) {
+        try {
+            Files.lines(new File("addressBook-file.txt").toPath()).map(line -> line.trim()).forEach(line -> System.out.println(line));
+
+        } catch (IOException e) {
+
+        }
+    }
+
     public ArrayList<ContactDetails> addContactDetails() {
         System.out.println("Enter the contact details:");
         System.out.println("Enter first Name:");
